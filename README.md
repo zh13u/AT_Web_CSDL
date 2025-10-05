@@ -219,25 +219,6 @@ FE/
     └── useDebounce.ts               # Debounce hook
         ├── useDebounce(value, delay)
         └── Usage: Search input optimization
-```
-📁 hooks/
-├── useAuth.ts                   # Authentication hook
-│   ├── useLogin() → mutation
-│   ├── useRegister() → mutation
-│   ├── useLogout() → mutation
-│   ├── useUser() → query current user
-│   └── Token refresh handling
-│
-├── useFilters.ts                # Product filter hook
-│   ├── State: brand, priceRange, ram, rom
-│   ├── setFilter(key, value)
-│   ├── clearFilters()
-│   └── URL sync (useSearchParams)
-│
-└── useDebounce.ts               # Debounce hook
-    ├── useDebounce(value, delay)
-    └── Usage: Search input optimization
-```
 
 ### 🧩 Components Directory
 
