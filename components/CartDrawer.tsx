@@ -5,6 +5,71 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCartStore } from "@/store/cart";
 import { formatPrice } from "@/lib/utils";
+import { useState } from "react";
+import { CartItem as CartItemType } from "@/lib/types";
+
+function CartItemCard({
+    item,
+    removeItem,
+    updateQuantity
+}: {
+    item: CartItemType;
+    removeItem: (sku: string) => void;
+    updateQuantity: (sku: string, quantity: number) => void;
+}) {
+    const [imgSrc, setImgSrc] = useState(item.thumbnail);
+
+    return (
+        <div className="flex gap-3 p-3 bg-bg rounded-xl border border-border">
+            <div className="relative w-20 h-20 flex-shrink-0 rounded-lg bg-surface overflow-hidden">
+                <Image
+                    src={imgSrc}
+                    alt={item.name}
+                    fill
+                    className="object-contain"
+                    onError={() => setImgSrc("/placeholder-phone.jpg")}
+                    unoptimized
+                />
+            </div>
+
+            <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-medium line-clamp-2">{item.name}</h3>
+                <p className="text-xs text-muted mt-1">
+                    {item.variant.color} - {item.variant.storage}
+                </p>
+                <div className="flex items-center justify-between mt-2">
+                    <span className="text-sm font-semibold text-danger">
+                        {formatPrice(item.price)}
+                    </span>
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={() => updateQuantity(item.variant.sku, Math.max(1, item.quantity - 1))}
+                            className="w-6 h-6 flex items-center justify-center rounded border border-border hover:bg-border"
+                            disabled={item.quantity <= 1}
+                        >
+                            -
+                        </button>
+                        <span className="text-sm w-8 text-center">{item.quantity}</span>
+                        <button
+                            onClick={() => updateQuantity(item.variant.sku, item.quantity + 1)}
+                            className="w-6 h-6 flex items-center justify-center rounded border border-border hover:bg-border"
+                        >
+                            +
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button
+                onClick={() => removeItem(item.variant.sku)}
+                className="p-1 hover:bg-border rounded"
+                aria-label="Remove item"
+            >
+                <Trash2 className="h-4 w-4 text-muted" />
+            </button>
+        </div>
+    );
+}
 
 export function CartDrawer() {
     const { items, isOpen, setOpen, removeItem, updateQuantity, getTotalPrice } = useCartStore();
@@ -50,57 +115,12 @@ export function CartDrawer() {
                     <>
                         <div className="flex-1 overflow-auto p-4 space-y-4">
                             {items.map((item) => (
-                                <div
+                                <CartItemCard
                                     key={item.variant.sku}
-                                    className="flex gap-3 p-3 bg-bg rounded-xl border border-border"
-                                >
-                                    <div className="relative w-20 h-20 flex-shrink-0 rounded-lg bg-surface overflow-hidden">
-                                        <Image
-                                            src={item.thumbnail}
-                                            alt={item.name}
-                                            fill
-                                            className="object-contain"
-                                        />
-                                    </div>
-
-                                    <div className="flex-1 min-w-0">
-                                        <h3 className="text-sm font-medium line-clamp-2">{item.name}</h3>
-                                        <p className="text-xs text-muted mt-1">
-                                            {item.variant.color} - {item.variant.storage}
-                                        </p>
-                                        <div className="flex items-center justify-between mt-2">
-                                            <span className="text-sm font-semibold text-danger">
-                                                {formatPrice(item.price)}
-                                            </span>
-                                            <div className="flex items-center gap-2">
-                                                <button
-                                                    onClick={() =>
-                                                        updateQuantity(item.variant.sku, Math.max(1, item.quantity - 1))
-                                                    }
-                                                    className="w-6 h-6 flex items-center justify-center rounded border border-border hover:bg-border"
-                                                    disabled={item.quantity <= 1}
-                                                >
-                                                    -
-                                                </button>
-                                                <span className="text-sm w-8 text-center">{item.quantity}</span>
-                                                <button
-                                                    onClick={() => updateQuantity(item.variant.sku, item.quantity + 1)}
-                                                    className="w-6 h-6 flex items-center justify-center rounded border border-border hover:bg-border"
-                                                >
-                                                    +
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button
-                                        onClick={() => removeItem(item.variant.sku)}
-                                        className="p-1 hover:bg-border rounded"
-                                        aria-label="Remove item"
-                                    >
-                                        <Trash2 className="h-4 w-4 text-muted" />
-                                    </button>
-                                </div>
+                                    item={item}
+                                    removeItem={removeItem}
+                                    updateQuantity={updateQuantity}
+                                />
                             ))}
                         </div>
 

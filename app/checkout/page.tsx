@@ -124,14 +124,15 @@ export default function CheckoutPage() {
 
                         <div className="space-y-4 mb-4">
                             {items.map((item) => (
-                                <div key={item.sku} className="flex gap-3">
+                                <div key={item.variant.sku} className="flex gap-3">
                                     <div className="w-16 h-16 rounded-lg overflow-hidden bg-border flex-shrink-0">
                                         <Image
-                                            src={item.image}
+                                            src={item.thumbnail}
                                             alt={item.name}
                                             width={64}
                                             height={64}
                                             className="w-full h-full object-cover"
+                                            unoptimized
                                         />
                                     </div>
                                     <div className="flex-1 min-w-0">
