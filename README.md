@@ -1,4 +1,4 @@
-# � PhoneShop - E-Commerce Frontend
+# 📱 PhoneShop - E-Commerce Frontend
 
 > Website bán điện thoại chuyên nghiệp với Next.js 14 + TypeScript + Tailwind CSS
 
@@ -9,7 +9,41 @@
 
 ## ✅ Tổng quan
 
-**PhoneShop FE** là giao diện người dùng hiện đại cho website thương mại điện tử bán điện thoại, được xây dựng với công nghệ tiên tiến và tối ưu hóa trải nghiệm người dùng.
+**PhoneShop FE** là ---
+
+## 🚀 Quick Start Guideo diện người dùng hiện đại cho website thương mại điện---
+
+## 📖 Usage Guide bán điện thoại, được xây dựng với công nghệ tiên tiến và tối ưu#### Step 4: API Endpoints Mapping
+
+| Frontend Route | Spring Boot Endpoint | Method | Auth |
+|----------------|---------------------|--------|------|
+| `/api/products` | `/api/products` | GET | No |
+| `/api/products/:slug` | `/api/products/:slug` | GET | No |
+| `/api/products/:id/reviews` | `/api/products/:id/reviews` | GET/POST | POST: Yes |
+| `/api/search` | `/api/search` | GET | No |
+| `/api/auth/login` | `/api/auth/login` | POST | No |
+| `/api/auth/register` | `/api/auth/register` | POST | No |
+| `/api/auth/logout` | `/api/auth/logout` | POST | Yes |
+| `/api/auth/me` | `/api/auth/me` | GET | Yes |
+| `/api/cart` | `/api/cart` | GET/POST/PUT/DELETE | Yes |
+| `/api/orders` | `/api/orders` | GET/POST | Yes |
+
+#### Step 5: Test Integration
+```bash
+# Start Spring Boot (port 8080)
+./mvnw spring-boot:run
+
+# Start Next.js (port 3000)
+pnpm dev
+
+# Test API call
+curl http://localhost:3000/api/products
+# Should proxy to http://localhost:8080/api/products
+```
+
+---
+
+## 🔒 Security Considerationsa trải nghiệm người dùng.
 
 ### 📊 Thông số dự án
 - **Tổng số file**: 60+ files
@@ -154,13 +188,13 @@ FE/
 
 ### 🗃️ Store Directory (Zustand)
 ```
-📁 store/
-├── 📄 cart.ts                   # Shopping cart state
+store/
+├── cart.ts                      # Shopping cart state
 │   ├── State: items, totalItems, totalPrice
 │   ├── Actions: addItem, removeItem, updateQuantity, clearCart
 │   └── Persist: localStorage sync
 │
-└── 📄 ui.ts                     # UI state management
+└── ui.ts                        # UI state management
     ├── State: isMobileMenuOpen, toastMessage, isLoading
     ├── Actions: toggleMobileMenu, showToast, hideToast
     └── Toast types: success, error, warning, info
@@ -168,42 +202,42 @@ FE/
 
 ### 🪝 Hooks Directory
 ```
-📁 hooks/
-├── 📄 useAuth.ts                # Authentication hook
+hooks/
+├── useAuth.ts                   # Authentication hook
 │   ├── useLogin() → mutation
 │   ├── useRegister() → mutation
 │   ├── useLogout() → mutation
 │   ├── useUser() → query current user
 │   └── Token refresh handling
 │
-├── 📄 useFilters.ts             # Product filter hook
+├── useFilters.ts                # Product filter hook
 │   ├── State: brand, priceRange, ram, rom
 │   ├── setFilter(key, value)
 │   ├── clearFilters()
 │   └── URL sync (useSearchParams)
 │
-└── 📄 useDebounce.ts            # Debounce hook
+└── useDebounce.ts               # Debounce hook
     ├── useDebounce(value, delay)
     └── Usage: Search input optimization
 ```
 
 ### 🧩 Components Directory
 ```
-📁 components/
-├── 📄 Header.tsx                # Site header
+components/
+├── Header.tsx                   # Site header
 │   ├── Logo + Navigation links
 │   ├── SearchBox integration
 │   ├── Cart icon with badge
 │   ├── User menu (login/profile)
 │   └── Mobile hamburger menu
 │
-├── 📄 Footer.tsx                # Site footer
+├── Footer.tsx                   # Site footer
 │   ├── Company info
 │   ├── Quick links (policies, contact)
 │   ├── Social media links
 │   └── Copyright notice
 │
-├── 📄 ProductCard.tsx           # Product card (Samsung S24+ style)
+├── ProductCard.tsx              # Product card (Samsung S24+ style)
 │   ├── ✨ NEW DESIGN: Red border (border-2 border-danger)
 │   ├── Discount badge (top-left)
 │   ├── Installment badge (top-right)
@@ -214,26 +248,26 @@ FE/
 │   ├── Heart wishlist button (lucide-react)
 │   └── Client Component ("use client" directive)
 │
-├── 📄 ProductFilters.tsx        # Filter sidebar
+├── ProductFilters.tsx           # Filter sidebar
 │   ├── Brand filter (checkbox group)
 │   ├── Price range slider
 │   ├── RAM filter (4GB, 6GB, 8GB, 12GB+)
 │   ├── Storage filter (64GB, 128GB, 256GB, 512GB+)
 │   └── Clear all button
 │
-├── 📄 ProductSort.tsx           # Sort dropdown
+├── ProductSort.tsx              # Sort dropdown
 │   ├── Newest
 │   ├── Most popular
 │   ├── Price: Low to High
 │   ├── Price: High to Low
 │   └── Best rating
 │
-├── 📄 RatingStars.tsx           # Star rating display
+├── RatingStars.tsx              # Star rating display
 │   ├── Props: rating (0-5), size, showCount
 │   ├── Filled/half/empty stars
 │   └── Review count badge
 │
-├── 📄 CartDrawer.tsx            # Mini cart drawer
+├── CartDrawer.tsx               # Mini cart drawer
 │   ├── Slide-in from right
 │   ├── Cart items list
 │   ├── Quantity controls (+/-)
@@ -241,13 +275,13 @@ FE/
 │   ├── Subtotal calculation
 │   └── Checkout button
 │
-├── 📄 Toast.tsx                 # Toast notification
+├── Toast.tsx                    # Toast notification
 │   ├── Auto-dismiss (3s)
 │   ├── Types: success, error, warning, info
 │   ├── Close button
 │   └── Slide-in animation
 │
-├── 📄 SearchBox.tsx             # Search with autocomplete
+├── SearchBox.tsx                # Search with autocomplete
 │   ├── Debounced input (300ms)
 │   ├── Live suggestions
 │   ├── Product thumbnails
@@ -255,101 +289,101 @@ FE/
 │   ├── Navigate to detail on click
 │   └── Clear button
 │
-├── 📄 Breadcrumb.tsx            # Breadcrumb navigation
+├── Breadcrumb.tsx               # Breadcrumb navigation
 │   ├── Home > Category > Product
 │   └── Schema.org markup
 │
-├── 📄 Pagination.tsx            # Pagination controls
+├── Pagination.tsx               # Pagination controls
 │   ├── Previous/Next buttons
 │   ├── Page numbers (with ellipsis)
 │   ├── Jump to page
 │   └── Items per page selector
 │
-└── 📁 ui/                       # Shadcn UI components
-    ├── 📄 button.tsx            # Button variants
-    ├── 📄 input.tsx             # Input field
-    ├── 📄 label.tsx             # Form label
-    ├── 📄 dialog.tsx            # Modal dialog
-    ├── 📄 dropdown-menu.tsx     # Dropdown menu
-    ├── 📄 skeleton.tsx          # Loading skeleton
-    ├── 📄 badge.tsx             # Badge component
-    └── 📄 card.tsx              # Card wrapper
+└── ui/                          # Shadcn UI components
+    ├── button.tsx               # Button variants
+    ├── input.tsx                # Input field
+    ├── label.tsx                # Form label
+    ├── dialog.tsx               # Modal dialog
+    ├── dropdown-menu.tsx        # Dropdown menu
+    ├── skeleton.tsx             # Loading skeleton
+    ├── badge.tsx                # Badge component
+    └── card.tsx                 # Card wrapper
 ```
 
 ### 🌐 API Routes (Mock Backend)
 ```
-📁 app/api/
-├── 📁 products/
-│   ├── 📄 route.ts              # GET /api/products
+app/api/
+├── products/
+│   ├── route.ts                 # GET /api/products
 │   │   ├── Query params: brand, minPrice, maxPrice, ram, rom
 │   │   ├── Sorting: newest, popular, price-asc, price-desc
 │   │   ├── Pagination: page, limit (default 12)
 │   │   ├── Returns: { products, total, page, totalPages }
 │   │   └── Mock delay: 500ms
 │   │
-│   ├── 📄 [slug]/route.ts       # GET /api/products/:slug
+│   ├── [slug]/route.ts          # GET /api/products/:slug
 │   │   ├── Returns: ProductDetail with full specs
 │   │   ├── Includes: gallery, variants, description
 │   │   ├── 404 if not found
 │   │   └── Mock delay: 300ms
 │   │
-│   └── 📄 [id]/reviews/route.ts # GET/POST /api/products/:id/reviews
+│   └── [slug]/reviews/route.ts  # GET/POST /api/products/:slug/reviews
 │       ├── GET: List reviews with pagination
 │       ├── POST: Add new review (rating, comment, images)
 │       ├── Auth required for POST
 │       └── Mock delay: 400ms
 │
-├── 📁 search/
-│   └── 📄 route.ts              # GET /api/search?q=keyword
+├── search/
+│   └── route.ts                 # GET /api/search?q=keyword
 │       ├── Search in: name, brand, description
 │       ├── Fuzzy matching
 │       ├── Limit: 10 results
 │       └── Mock delay: 200ms
 │
-├── 📁 auth/
-│   ├── 📄 login/route.ts        # POST /api/auth/login
+├── auth/
+│   ├── login/route.ts           # POST /api/auth/login
 │   │   ├── Body: { email, password }
 │   │   ├── Returns: { user, token }
 │   │   ├── Sets HttpOnly cookie (mock)
 │   │   └── Mock users: admin@test.com / 123456
 │   │
-│   ├── 📄 register/route.ts     # POST /api/auth/register
+│   ├── register/route.ts        # POST /api/auth/register
 │   │   ├── Body: { name, email, password, phone }
 │   │   ├── Validation: Zod schema
 │   │   ├── Returns: { user, token }
 │   │   └── Auto-login after register
 │   │
-│   ├── 📄 logout/route.ts       # POST /api/auth/logout
+│   ├── logout/route.ts          # POST /api/auth/logout
 │   │   ├── Clears auth cookie
 │   │   └── Returns: { success: true }
 │   │
-│   ├── 📄 forgot/route.ts       # POST /api/auth/forgot-password
+│   ├── forgot/route.ts          # POST /api/auth/forgot-password
 │   │   ├── Body: { email }
 │   │   ├── Sends reset email (mock)
 │   │   └── Returns: { message }
 │   │
-│   └── 📄 me/route.ts           # GET /api/auth/me
+│   └── me/route.ts              # GET /api/auth/me
 │       ├── Requires: Auth cookie
 │       ├── Returns: Current user data
 │       └── 401 if not authenticated
 │
-├── 📁 cart/
-│   └── 📄 route.ts              # GET/POST/PUT/DELETE /api/cart
+├── cart/
+│   └── route.ts                 # GET/POST/PUT/DELETE /api/cart
 │       ├── GET: Get user's cart
 │       ├── POST: Add item to cart
 │       ├── PUT: Update item quantity
 │       ├── DELETE: Remove item
 │       └── Syncs with Zustand store
 │
-├── 📁 orders/
-│   └── 📄 route.ts              # GET/POST /api/orders
+├── orders/
+│   └── route.ts                 # GET/POST /api/orders
 │       ├── GET: List user orders (with pagination)
 │       ├── POST: Create new order
 │       ├── Body: { items, shippingAddress, paymentMethod }
 │       └── Returns: { order, orderId }
 │
-└── 📁 uploads/
-    └── 📄 sign/route.ts         # POST /api/uploads/sign
+└── uploads/
+    └── sign/route.ts            # POST /api/uploads/sign
         ├── Generate pre-signed URL for S3 (mock)
         ├── Validate: File type, size (max 5MB)
         ├── Allowed: image/jpeg, image/png, image/webp
@@ -358,15 +392,15 @@ FE/
 
 ### 📄 Pages (App Router)
 ```
-📁 app/
-├── 📄 layout.tsx                # Root layout
+app/
+├── layout.tsx                   # Root layout
 │   ├── HTML structure
 │   ├── Metadata (title, description, OG tags)
 │   ├── Header + Footer wrapper
 │   ├── Providers (React Query, Zustand)
 │   └── Global styles import
 │
-├── 📄 page.tsx                  # Homepage (/)
+├── page.tsx                     # Homepage (/)
 │   ├── Hero banner with CTA
 │   ├── Featured products carousel
 │   ├── Product categories grid
@@ -374,8 +408,8 @@ FE/
 │   ├── Brand showcase
 │   └── SEO optimized
 │
-├── 📁 dien-thoai/
-│   ├── 📄 page.tsx              # Product listing (/dien-thoai)
+├── dien-thoai/
+│   ├── page.tsx                 # Product listing (/dien-thoai)
 │   │   ├── ProductFilters sidebar
 │   │   ├── ProductSort dropdown
 │   │   ├── Product grid (responsive)
@@ -384,12 +418,10 @@ FE/
 │   │   ├── Loading skeleton
 │   │   └── URL state sync
 │   │
-│   └── 📄 [slug]/page.tsx       # Product detail (/dien-thoai/:slug)
+│   └── [slug]/page.tsx          # Product detail (/dien-thoai/:slug)
 │       ├── Image gallery (main + thumbnails)
 │       ├── Product info (name, brand, price)
 │       ├── Discount badge
-│       ├── Variant selector (color, storage)
-│       ├── ✅ REMOVED: Variant selector (as requested)
 │       ├── Stock status indicator
 │       ├── Add to cart button
 │       ├── Quantity selector
@@ -400,16 +432,16 @@ FE/
 │       ├── Related products
 │       └── generateMetadata() for SEO
 │
-├── 📁 search/
-│   └── 📄 page.tsx              # Search results (/search?q=keyword)
+├── search/
+│   └── page.tsx                 # Search results (/search?q=keyword)
 │       ├── Search query display
 │       ├── Results count
 │       ├── Product grid
 │       ├── No results message
 │       └── Search suggestions
 │
-├── 📁 cart/
-│   └── 📄 page.tsx              # Shopping cart (/cart)
+├── cart/
+│   └── page.tsx                 # Shopping cart (/cart)
 │       ├── Cart items list
 │       ├── Product thumbnail + info
 │       ├── Quantity controls
@@ -423,8 +455,8 @@ FE/
 │       ├── Proceed to checkout button
 │       └── Empty cart state
 │
-├── 📁 auth/
-│   └── 📄 login/page.tsx        # Login page (/auth/login)
+├── auth/
+│   └── login/page.tsx           # Login page (/auth/login)
 │       ├── Email + Password form
 │       ├── Remember me checkbox
 │       ├── Forgot password link
@@ -433,17 +465,17 @@ FE/
 │       ├── Form validation (Zod)
 │       └── Redirect after login
 │
-├── 📄 chinh-sach-bao-hanh/page.tsx  # Warranty policy
+├── chinh-sach-bao-hanh/page.tsx # Warranty policy
 │   ├── Policy content
 │   ├── Terms & conditions
 │   └── Contact info
 │
-├── 📄 chinh-sach-doi-tra/page.tsx   # Return policy
+├── chinh-sach-doi-tra/page.tsx  # Return policy
 │   ├── Return process
 │   ├── Timeframe
 │   └── Requirements
 │
-└── 📄 lien-he/page.tsx          # Contact page
+└── lien-he/page.tsx             # Contact page
     ├── Contact form
     ├── Store addresses
     ├── Phone numbers
@@ -453,17 +485,17 @@ FE/
 
 ### 🖼️ Public Assets
 ```
-📁 public/
-├── 📄 placeholder-phone.jpg     # Default product image
-├── 📁 images/                   # Product images (to be added)
+public/
+├── placeholder-phone.jpg        # Default product image
+├── images/                      # Product images (to be added)
 │   ├── iphone-15-pro-max.jpg
 │   ├── samsung-s24-ultra.jpg
 │   └── ... (30 products)
-├── 📁 icons/
+├── icons/
 │   ├── favicon.ico
 │   ├── apple-icon.png
 │   └── android-icon.png
-└── 📄 robots.txt                # SEO robots file
+└── robots.txt                   # SEO robots file
 ```
 
 ---
@@ -531,17 +563,6 @@ FE/
 # Clone repository
 git clone https://github.com/zh13u/AT_Web_CSDL.git
 cd AT_Web_CSDL
-
-# Checkout FE branch
-git checkout FE
-
-# Navigate to FE directory
-cd FE
-
-# Install dependencies
-pnpm install
-# or
-npm install
 ```
 
 ### ⚙️ Environment Setup
@@ -649,7 +670,21 @@ Features:
 - Checkout button
 ```
 
-### 🔐 Authentication
+### � Search
+```
+Component: Header SearchBox
+Features:
+- Debounced input (300ms)
+- Live autocomplete suggestions
+- Product thumbnails + prices
+- Navigate to detail on click
+```
+
+---
+
+## 🔌 Backend Integration
+
+### 🔄 Replace Mock API with Spring Boot
 ```
 URL: http://localhost:3000/auth/login
 Mock Credentials:
@@ -790,7 +825,97 @@ Features:
 └── /components/[domain]/    # Domain components
 ```
 
+### 💡 Code Style Guidelines
+```typescript
+// ✅ Good: Typed props with interface
+interface ProductCardProps {
+  product: Product;
+  onAddToCart?: (id: string) => void;
+}
 
+// ✅ Good: Server Component by default
+export default async function ProductsPage() {
+  const products = await getProducts();
+  return <ProductList products={products} />;
+}
+
+// ✅ Good: Client Component when needed
+'use client';
+export function CartButton() {
+  const { addItem } = useCart();
+  return <button onClick={() => addItem(...)}>Add</button>;
+}
+
+// ✅ Good: Zod validation
+const formData = loginSchema.parse(data);
+
+// ✅ Good: Error handling
+try {
+  await api.login(data);
+} catch (error) {
+  toast.error(error.message);
+}
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### ❌ Common Issues & Solutions
+
+#### Issue 1: Port 3000 already in use
+```bash
+# Solution 1: Kill process on port 3000
+# Windows
+netstat -ano | findstr :3000
+taskkill /PID <PID> /F
+
+# macOS/Linux
+lsof -ti:3000 | xargs kill -9
+
+# Solution 2: Use different port
+pnpm dev -- -p 3001
+```
+
+#### Issue 2: Module not found errors
+```bash
+# Clear cache and reinstall
+rm -rf node_modules .next
+pnpm install
+pnpm dev
+```
+
+#### Issue 3: TypeScript errors
+```bash
+# Type check
+pnpm type-check
+
+# Clear TypeScript cache
+rm -rf .next tsconfig.tsbuildinfo
+pnpm dev
+```
+
+#### Issue 4: Tailwind styles not applying
+```bash
+# Clear Next.js cache
+rm -rf .next
+
+# Verify tailwind.config.ts content paths
+content: [
+  './app/**/*.{js,ts,jsx,tsx,mdx}',
+  './components/**/*.{js,ts,jsx,tsx,mdx}',
+]
+```
+
+#### Issue 5: API routes returning 404
+```bash
+# Verify file structure
+app/api/products/route.ts  ✅ Correct
+app/api/products.ts         ❌ Wrong
+
+# Check HTTP method
+export async function GET(request) { ... }  ✅
+export async function get(request) { ... }  ❌
 ```
 
 ---
@@ -811,6 +936,15 @@ vercel
 
 # Production deployment
 vercel --prod
+```
+
+```bash
+# Build image
+docker build -t phoneshop-fe .
+
+# Run container
+docker run -p 3000:3000 phoneshop-fe
+```
 
 
 ### ☁️ AWS Deployment (EC2 + PM2)
@@ -846,10 +980,80 @@ pnpm build
 # Upload /out directory
 ```
 
+---
 
+## 🔄 Git Workflow
 
+### � Commit Message Convention
+```bash
+# Format: <type>(<scope>): <subject>
 
-## 📞 Support & Contact
+# Types:
+feat:     # New feature
+fix:      # Bug fix
+docs:     # Documentation only
+style:    # Code style (formatting, missing semi-colons)
+refactor: # Code refactoring
+test:     # Adding tests
+chore:    # Maintenance tasks
+
+# Examples:
+git commit -m "feat(product): add 30 complete product details"
+git commit -m "fix(cart): resolve quantity update issue"
+git commit -m "docs(readme): update installation guide"
+git commit -m "style(card): redesign ProductCard to match Samsung S24+"
+```
+
+### 🌿 Branch Strategy
+```bash
+# Main branches
+master/main    # Production-ready code
+develop        # Development branch
+FE            # Frontend branch (current)
+
+# Feature branches
+feature/product-details
+feature/cart-redesign
+feature/search-autocomplete
+
+# Create feature branch
+git checkout -b feature/new-feature FE
+
+# Merge back to FE
+git checkout FE
+git merge feature/new-feature
+git push origin FE
+```
+
+### 🔍 Useful Git Commands
+```bash
+# Status and logs
+git status
+git log --oneline --graph --all
+
+# Undo changes
+git checkout -- <file>          # Discard changes
+git reset HEAD <file>            # Unstage file
+git reset --hard HEAD~1          # Undo last commit (danger!)
+
+# Stash changes
+git stash                        # Save changes
+git stash pop                    # Restore changes
+git stash list                   # List stashes
+
+# Remote management
+git remote -v                    # Show remotes
+git fetch origin                 # Fetch updates
+git pull origin FE               # Pull from FE branch
+git push origin FE               # Push to FE branch
+
+# Branch management
+git branch                       # List local branches
+git branch -a                    # List all branches
+git branch -d feature-name       # Delete branch
+```
+
+---
 
 ### 🆘 Getting Help
 - **GitHub Issues**: [Create an issue](https://github.com/zh13u/AT_Web_CSDL/issues)
