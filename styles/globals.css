@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Tokens (Light/Dark) ===== */
+:root {
+    --bg: 225 33% 98%;
+    --surface: 0 0% 100%;
+    --text: 212 24% 16%;
+    --muted: 215 12% 45%;
+    --border: 215 20% 88%;
+    --brand: 232 45% 58%;
+    --brand-dark: 232 45% 44%;
+    --brand-fg: 0 0% 100%;
+    --success: 150 60% 40%;
+    --warning: 35 90% 52%;
+    --danger: 0 72% 54%;
+}
+
+.dark {
+    --bg: 230 35% 7%;
+    --surface: 230 30% 11%;
+    --text: 220 15% 92%;
+    --muted: 215 12% 70%;
+    --border: 220 12% 22%;
+    --brand: 232 45% 62%;
+    --brand-dark: 232 45% 52%;
+    --brand-fg: 0 0% 100%;
+}
+
+/* ===== Base ===== */
+html,
+body {
+    @apply h-full;
+}
+
+body {
+    @apply bg-bg text-text antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+a {
+    @apply text-brand hover:text-brand-dark transition-colors;
+}
+
+img,
+video {
+    @apply max-w-full h-auto;
+}
+
+*:focus-visible {
+    @apply outline-none ring-2 ring-brand/60 ring-offset-2 ring-offset-surface;
+}
+
+/* ===== Helpers ===== */
+.container-narrow {
+    @apply container max-w-5xl;
+}
+
+.shadow-card {
+    @apply shadow-sm;
+}
+
+.card {
+    @apply rounded-2xl bg-surface shadow-card border border-border;
+}
+
+.badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs bg-brand text-brand-fg;
+}
+
+.muted {
+    @apply text-muted;
+}
+
+/* Screen reader only - Tailwind has built-in sr-only utility */
+
+/* ===== Buttons ===== */
+.btn {
+    @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium transition-colors select-none disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+    @apply btn bg-brand text-brand-fg hover:bg-brand-dark;
+}
+
+.btn-ghost {
+    @apply btn bg-transparent hover:bg-border;
+}
+
+.btn-outline {
+    @apply btn border border-border hover:bg-border;
+}
+
+/* ===== Product Card ===== */
+.product-card {
+    @apply card p-4 relative overflow-hidden transition-transform duration-150;
+}
+
+.product-card:hover {
+    transform: translateY(-2px);
+}
+
+.product-thumb {
+    @apply aspect-[4/3] w-full rounded-xl bg-border overflow-hidden;
+}
+
+.price {
+    @apply text-lg font-semibold;
+}
+
+.price .sale {
+    @apply text-danger font-semibold;
+}
+
+.price .strike {
+    @apply line-through text-muted ml-2 text-sm;
+}
+
+/* ===== Grid & Layout ===== */
+.grid-products {
+    @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6;
+}
+
+.section {
+    @apply py-10 sm:py-14;
+}
+
+.section-title {
+    @apply text-2xl sm:text-3xl font-semibold mb-6;
+}
+
+/* ===== Review: media grid + dropzone ===== */
+.review-media-grid {
+    @apply grid grid-cols-3 sm:grid-cols-5 gap-2;
+}
+
+.review-media-grid .item {
+    @apply aspect-square rounded-lg bg-border overflow-hidden relative;
+}
+
+.dropzone {
+    @apply border-2 border-dashed border-border rounded-2xl p-6 text-center text-sm text-muted hover:border-brand focus-within:border-brand transition-colors;
+}
+
+.dropzone.dragover {
+    @apply border-brand bg-brand/5;
+}
+
+/* ===== Skeleton (loading) ===== */
+.skeleton {
+    @apply relative overflow-hidden rounded-xl bg-border;
+}
+
+.skeleton::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full;
+    background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, .45), transparent);
+    animation: shimmer 1.2s linear infinite;
+}
+
+/* ===== Progress (upload) ===== */
+.progress {
+    @apply h-2 w-full rounded-full bg-border overflow-hidden;
+}
+
+.progress>span {
+    @apply block h-full bg-brand;
+}
+
+/* ===== Rating stars ===== */
+.stars {
+    @apply inline-flex items-center gap-0.5 align-middle;
+}
+
+.stars .star {
+    @apply w-4 h-4 text-warning;
+}
+
+/* ===== Dialog/Drawer ===== */
+.dialog-body {
+    @apply p-4 sm:p-6;
+}
+
+.drawer {
+    @apply fixed inset-y-0 right-0 w-full sm:w-[420px] bg-surface border-l border-border shadow-soft;
+}
+
+/* ===== Forms ===== */
+.input {
+    @apply w-full rounded-xl border border-border bg-surface px-3 py-2 text-sm outline-none focus:border-brand;
+}
+
+.label {
+    @apply block text-sm font-medium mb-1;
+}
+
+.help {
+    @apply text-xs text-muted mt-1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
