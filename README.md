@@ -187,22 +187,40 @@ FE/
     └── MOCK_REVIEWS (sample reviews)
 
 ### 🗃️ Store Directory (Zustand)
-```
-store/
-├── cart.ts                      # Shopping cart state
-│   ├── State: items, totalItems, totalPrice
-│   ├── Actions: addItem, removeItem, updateQuantity, clearCart
-│   └── Persist: localStorage sync
-│
-└── ui.ts                        # UI state management
-    ├── State: isMobileMenuOpen, toastMessage, isLoading
-    ├── Actions: toggleMobileMenu, showToast, hideToast
-    └── Toast types: success, error, warning, info
-```
+
+    store/
+    ├── cart.ts                      # Shopping cart state
+    │   ├── State: items, totalItems, totalPrice
+    │   ├── Actions: addItem, removeItem, updateQuantity, clearCart
+    │   └── Persist: localStorage sync
+    │
+    └── ui.ts                        # UI state management
+        ├── State: isMobileMenuOpen, toastMessage, isLoading
+        ├── Actions: toggleMobileMenu, showToast, hideToast
+        └── Toast types: success, error, warning, info
+
 
 ### 🪝 Hooks Directory
+
+    hooks/
+    ├── useAuth.ts                   # Authentication hook
+    │   ├── useLogin() → mutation
+    │   ├── useRegister() → mutation
+    │   ├── useLogout() → mutation
+    │   ├── useUser() → query current user
+    │   └── Token refresh handling
+    │
+    ├── useFilters.ts                # Product filter hook
+    │   ├── State: brand, priceRange, ram, rom
+    │   ├── setFilter(key, value)
+    │   ├── clearFilters()
+    │   └── URL sync (useSearchParams)
+    │
+    └── useDebounce.ts               # Debounce hook
+        ├── useDebounce(value, delay)
+        └── Usage: Search input optimization
 ```
-hooks/
+📁 hooks/
 ├── useAuth.ts                   # Authentication hook
 │   ├── useLogin() → mutation
 │   ├── useRegister() → mutation
@@ -222,281 +240,277 @@ hooks/
 ```
 
 ### 🧩 Components Directory
-```
-components/
-├── Header.tsx                   # Site header
-│   ├── Logo + Navigation links
-│   ├── SearchBox integration
-│   ├── Cart icon with badge
-│   ├── User menu (login/profile)
-│   └── Mobile hamburger menu
-│
-├── Footer.tsx                   # Site footer
-│   ├── Company info
-│   ├── Quick links (policies, contact)
-│   ├── Social media links
-│   └── Copyright notice
-│
-├── ProductCard.tsx              # Product card (Samsung S24+ style)
-│   ├── ✨ NEW DESIGN: Red border (border-2 border-danger)
-│   ├── Discount badge (top-left)
-│   ├── Installment badge (top-right)
-│   ├── Product image with hover effect
-│   ├── Product name + brand
-│   ├── Price in RED (text-danger text-lg font-bold)
-│   ├── Star rating (⭐ emoji + count)
-│   ├── Heart wishlist button (lucide-react)
-│   └── Client Component ("use client" directive)
-│
-├── ProductFilters.tsx           # Filter sidebar
-│   ├── Brand filter (checkbox group)
-│   ├── Price range slider
-│   ├── RAM filter (4GB, 6GB, 8GB, 12GB+)
-│   ├── Storage filter (64GB, 128GB, 256GB, 512GB+)
-│   └── Clear all button
-│
-├── ProductSort.tsx              # Sort dropdown
-│   ├── Newest
-│   ├── Most popular
-│   ├── Price: Low to High
-│   ├── Price: High to Low
-│   └── Best rating
-│
-├── RatingStars.tsx              # Star rating display
-│   ├── Props: rating (0-5), size, showCount
-│   ├── Filled/half/empty stars
-│   └── Review count badge
-│
-├── CartDrawer.tsx               # Mini cart drawer
-│   ├── Slide-in from right
-│   ├── Cart items list
-│   ├── Quantity controls (+/-)
-│   ├── Remove item button
-│   ├── Subtotal calculation
-│   └── Checkout button
-│
-├── Toast.tsx                    # Toast notification
-│   ├── Auto-dismiss (3s)
-│   ├── Types: success, error, warning, info
-│   ├── Close button
-│   └── Slide-in animation
-│
-├── SearchBox.tsx                # Search with autocomplete
-│   ├── Debounced input (300ms)
-│   ├── Live suggestions
-│   ├── Product thumbnails
-│   ├── Price display
-│   ├── Navigate to detail on click
-│   └── Clear button
-│
-├── Breadcrumb.tsx               # Breadcrumb navigation
-│   ├── Home > Category > Product
-│   └── Schema.org markup
-│
-├── Pagination.tsx               # Pagination controls
-│   ├── Previous/Next buttons
-│   ├── Page numbers (with ellipsis)
-│   ├── Jump to page
-│   └── Items per page selector
-│
-└── ui/                          # Shadcn UI components
-    ├── button.tsx               # Button variants
-    ├── input.tsx                # Input field
-    ├── label.tsx                # Form label
-    ├── dialog.tsx               # Modal dialog
-    ├── dropdown-menu.tsx        # Dropdown menu
-    ├── skeleton.tsx             # Loading skeleton
-    ├── badge.tsx                # Badge component
-    └── card.tsx                 # Card wrapper
-```
+
+    components/
+    ├── Header.tsx                   # Site header
+    │   ├── Logo + Navigation links
+    │   ├── SearchBox integration
+    │   ├── Cart icon with badge
+    │   ├── User menu (login/profile)
+    │   └── Mobile hamburger menu
+    │
+    ├── Footer.tsx                   # Site footer
+    │   ├── Company info
+    │   ├── Quick links (policies, contact)
+    │   ├── Social media links
+    │   └── Copyright notice
+    │
+    ├── ProductCard.tsx              # Product card (Samsung S24+ style)
+    │   ├── ✨ NEW DESIGN: Red border (border-2 border-danger)
+    │   ├── Discount badge (top-left)
+    │   ├── Installment badge (top-right)
+    │   ├── Product image with hover effect
+    │   ├── Product name + brand
+    │   ├── Price in RED (text-danger text-lg font-bold)
+    │   ├── Star rating (⭐ emoji + count)
+    │   ├── Heart wishlist button (lucide-react)
+    │   └── Client Component ("use client" directive)
+    │
+    ├── ProductFilters.tsx           # Filter sidebar
+    │   ├── Brand filter (checkbox group)
+    │   ├── Price range slider
+    │   ├── RAM filter (4GB, 6GB, 8GB, 12GB+)
+    │   ├── Storage filter (64GB, 128GB, 256GB, 512GB+)
+    │   └── Clear all button
+    │
+    ├── ProductSort.tsx              # Sort dropdown
+    │   ├── Newest
+    │   ├── Most popular
+    │   ├── Price: Low to High
+    │   ├── Price: High to Low
+    │   └── Best rating
+    │
+    ├── RatingStars.tsx              # Star rating display
+    │   ├── Props: rating (0-5), size, showCount
+    │   ├── Filled/half/empty stars
+    │   └── Review count badge
+    │
+    ├── CartDrawer.tsx               # Mini cart drawer
+    │   ├── Slide-in from right
+    │   ├── Cart items list
+    │   ├── Quantity controls (+/-)
+    │   ├── Remove item button
+    │   ├── Subtotal calculation
+    │   └── Checkout button
+    │
+    ├── Toast.tsx                    # Toast notification
+    │   ├── Auto-dismiss (3s)
+    │   ├── Types: success, error, warning, info
+    │   ├── Close button
+    │   └── Slide-in animation
+    │
+    ├── SearchBox.tsx                # Search with autocomplete
+    │   ├── Debounced input (300ms)
+    │   ├── Live suggestions
+    │   ├── Product thumbnails
+    │   ├── Price display
+    │   ├── Navigate to detail on click
+    │   └── Clear button
+    │
+    ├── Breadcrumb.tsx               # Breadcrumb navigation
+    │   ├── Home > Category > Product
+    │   └── Schema.org markup
+    │
+    ├── Pagination.tsx               # Pagination controls
+    │   ├── Previous/Next buttons
+    │   ├── Page numbers (with ellipsis)
+    │   ├── Jump to page
+    │   └── Items per page selector
+    │
+    └── ui/                          # Shadcn UI components
+        ├── button.tsx               # Button variants
+        ├── input.tsx                # Input field
+        ├── label.tsx                # Form label
+        ├── dialog.tsx               # Modal dialog
+        ├── dropdown-menu.tsx        # Dropdown menu
+        ├── skeleton.tsx             # Loading skeleton
+        ├── badge.tsx                # Badge component
+        └── card.tsx                 # Card wrapper
 
 ### 🌐 API Routes (Mock Backend)
-```
-app/api/
-├── products/
-│   ├── route.ts                 # GET /api/products
-│   │   ├── Query params: brand, minPrice, maxPrice, ram, rom
-│   │   ├── Sorting: newest, popular, price-asc, price-desc
-│   │   ├── Pagination: page, limit (default 12)
-│   │   ├── Returns: { products, total, page, totalPages }
-│   │   └── Mock delay: 500ms
-│   │
-│   ├── [slug]/route.ts          # GET /api/products/:slug
-│   │   ├── Returns: ProductDetail with full specs
-│   │   ├── Includes: gallery, variants, description
-│   │   ├── 404 if not found
-│   │   └── Mock delay: 300ms
-│   │
-│   └── [slug]/reviews/route.ts  # GET/POST /api/products/:slug/reviews
-│       ├── GET: List reviews with pagination
-│       ├── POST: Add new review (rating, comment, images)
-│       ├── Auth required for POST
-│       └── Mock delay: 400ms
-│
-├── search/
-│   └── route.ts                 # GET /api/search?q=keyword
-│       ├── Search in: name, brand, description
-│       ├── Fuzzy matching
-│       ├── Limit: 10 results
-│       └── Mock delay: 200ms
-│
-├── auth/
-│   ├── login/route.ts           # POST /api/auth/login
-│   │   ├── Body: { email, password }
-│   │   ├── Returns: { user, token }
-│   │   ├── Sets HttpOnly cookie (mock)
-│   │   └── Mock users: admin@test.com / 123456
-│   │
-│   ├── register/route.ts        # POST /api/auth/register
-│   │   ├── Body: { name, email, password, phone }
-│   │   ├── Validation: Zod schema
-│   │   ├── Returns: { user, token }
-│   │   └── Auto-login after register
-│   │
-│   ├── logout/route.ts          # POST /api/auth/logout
-│   │   ├── Clears auth cookie
-│   │   └── Returns: { success: true }
-│   │
-│   ├── forgot/route.ts          # POST /api/auth/forgot-password
-│   │   ├── Body: { email }
-│   │   ├── Sends reset email (mock)
-│   │   └── Returns: { message }
-│   │
-│   └── me/route.ts              # GET /api/auth/me
-│       ├── Requires: Auth cookie
-│       ├── Returns: Current user data
-│       └── 401 if not authenticated
-│
-├── cart/
-│   └── route.ts                 # GET/POST/PUT/DELETE /api/cart
-│       ├── GET: Get user's cart
-│       ├── POST: Add item to cart
-│       ├── PUT: Update item quantity
-│       ├── DELETE: Remove item
-│       └── Syncs with Zustand store
-│
-├── orders/
-│   └── route.ts                 # GET/POST /api/orders
-│       ├── GET: List user orders (with pagination)
-│       ├── POST: Create new order
-│       ├── Body: { items, shippingAddress, paymentMethod }
-│       └── Returns: { order, orderId }
-│
-└── uploads/
-    └── sign/route.ts            # POST /api/uploads/sign
-        ├── Generate pre-signed URL for S3 (mock)
-        ├── Validate: File type, size (max 5MB)
-        ├── Allowed: image/jpeg, image/png, image/webp
-        └── Returns: { url, uploadUrl }
-```
+
+    app/api/
+    ├── products/
+    │   ├── route.ts                 # GET /api/products
+    │   │   ├── Query params: brand, minPrice, maxPrice, ram, rom
+    │   │   ├── Sorting: newest, popular, price-asc, price-desc
+    │   │   ├── Pagination: page, limit (default 12)
+    │   │   ├── Returns: { products, total, page, totalPages }
+    │   │   └── Mock delay: 500ms
+    │   │
+    │   ├── [slug]/route.ts          # GET /api/products/:slug
+    │   │   ├── Returns: ProductDetail with full specs
+    │   │   ├── Includes: gallery, variants, description
+    │   │   ├── 404 if not found
+    │   │   └── Mock delay: 300ms
+    │   │
+    │   └── [slug]/reviews/route.ts  # GET/POST /api/products/:slug/reviews
+    │       ├── GET: List reviews with pagination
+    │       ├── POST: Add new review (rating, comment, images)
+    │       ├── Auth required for POST
+    │       └── Mock delay: 400ms
+    │
+    ├── search/
+    │   └── route.ts                 # GET /api/search?q=keyword
+    │       ├── Search in: name, brand, description
+    │       ├── Fuzzy matching
+    │       ├── Limit: 10 results
+    │       └── Mock delay: 200ms
+    │
+    ├── auth/
+    │   ├── login/route.ts           # POST /api/auth/login
+    │   │   ├── Body: { email, password }
+    │   │   ├── Returns: { user, token }
+    │   │   ├── Sets HttpOnly cookie (mock)
+    │   │   └── Mock users: admin@test.com / 123456
+    │   │
+    │   ├── register/route.ts        # POST /api/auth/register
+    │   │   ├── Body: { name, email, password, phone }
+    │   │   ├── Validation: Zod schema
+    │   │   ├── Returns: { user, token }
+    │   │   └── Auto-login after register
+    │   │
+    │   ├── logout/route.ts          # POST /api/auth/logout
+    │   │   ├── Clears auth cookie
+    │   │   └── Returns: { success: true }
+    │   │
+    │   ├── forgot/route.ts          # POST /api/auth/forgot-password
+    │   │   ├── Body: { email }
+    │   │   ├── Sends reset email (mock)
+    │   │   └── Returns: { message }
+    │   │
+    │   └── me/route.ts              # GET /api/auth/me
+    │       ├── Requires: Auth cookie
+    │       ├── Returns: Current user data
+    │       └── 401 if not authenticated
+    │
+    ├── cart/
+    │   └── route.ts                 # GET/POST/PUT/DELETE /api/cart
+    │       ├── GET: Get user's cart
+    │       ├── POST: Add item to cart
+    │       ├── PUT: Update item quantity
+    │       ├── DELETE: Remove item
+    │       └── Syncs with Zustand store
+    │
+    ├── orders/
+    │   └── route.ts                 # GET/POST /api/orders
+    │       ├── GET: List user orders (with pagination)
+    │       ├── POST: Create new order
+    │       ├── Body: { items, shippingAddress, paymentMethod }
+    │       └── Returns: { order, orderId }
+    │
+    └── uploads/
+        └── sign/route.ts            # POST /api/uploads/sign
+            ├── Generate pre-signed URL for S3 (mock)
+            ├── Validate: File type, size (max 5MB)
+            ├── Allowed: image/jpeg, image/png, image/webp
+            └── Returns: { url, uploadUrl }
 
 ### 📄 Pages (App Router)
-```
-app/
-├── layout.tsx                   # Root layout
-│   ├── HTML structure
-│   ├── Metadata (title, description, OG tags)
-│   ├── Header + Footer wrapper
-│   ├── Providers (React Query, Zustand)
-│   └── Global styles import
-│
-├── page.tsx                     # Homepage (/)
-│   ├── Hero banner with CTA
-│   ├── Featured products carousel
-│   ├── Product categories grid
-│   ├── Top deals section
-│   ├── Brand showcase
-│   └── SEO optimized
-│
-├── dien-thoai/
-│   ├── page.tsx                 # Product listing (/dien-thoai)
-│   │   ├── ProductFilters sidebar
-│   │   ├── ProductSort dropdown
-│   │   ├── Product grid (responsive)
-│   │   ├── Pagination
-│   │   ├── Empty state
-│   │   ├── Loading skeleton
-│   │   └── URL state sync
-│   │
-│   └── [slug]/page.tsx          # Product detail (/dien-thoai/:slug)
-│       ├── Image gallery (main + thumbnails)
-│       ├── Product info (name, brand, price)
-│       ├── Discount badge
-│       ├── Stock status indicator
-│       ├── Add to cart button
-│       ├── Quantity selector
-│       ├── Technical specs table
-│       ├── HTML description (safe)
-│       ├── Reviews section
-│       ├── Write review form
-│       ├── Related products
-│       └── generateMetadata() for SEO
-│
-├── search/
-│   └── page.tsx                 # Search results (/search?q=keyword)
-│       ├── Search query display
-│       ├── Results count
-│       ├── Product grid
-│       ├── No results message
-│       └── Search suggestions
-│
-├── cart/
-│   └── page.tsx                 # Shopping cart (/cart)
-│       ├── Cart items list
-│       ├── Product thumbnail + info
-│       ├── Quantity controls
-│       ├── Remove item button
-│       ├── Subtotal calculation
-│       ├── Shipping estimate
-│       ├── Tax calculation
-│       ├── Total amount
-│       ├── Promo code input
-│       ├── Continue shopping button
-│       ├── Proceed to checkout button
-│       └── Empty cart state
-│
-├── auth/
-│   └── login/page.tsx           # Login page (/auth/login)
-│       ├── Email + Password form
-│       ├── Remember me checkbox
-│       ├── Forgot password link
-│       ├── Social login buttons (mock)
-│       ├── Register link
-│       ├── Form validation (Zod)
-│       └── Redirect after login
-│
-├── chinh-sach-bao-hanh/page.tsx # Warranty policy
-│   ├── Policy content
-│   ├── Terms & conditions
-│   └── Contact info
-│
-├── chinh-sach-doi-tra/page.tsx  # Return policy
-│   ├── Return process
-│   ├── Timeframe
-│   └── Requirements
-│
-└── lien-he/page.tsx             # Contact page
-    ├── Contact form
-    ├── Store addresses
-    ├── Phone numbers
-    ├── Email addresses
-    └── Google Maps embed (optional)
-```
+
+    app/
+    ├── layout.tsx                   # Root layout
+    │   ├── HTML structure
+    │   ├── Metadata (title, description, OG tags)
+    │   ├── Header + Footer wrapper
+    │   ├── Providers (React Query, Zustand)
+    │   └── Global styles import
+    │
+    ├── page.tsx                     # Homepage (/)
+    │   ├── Hero banner with CTA
+    │   ├── Featured products carousel
+    │   ├── Product categories grid
+    │   ├── Top deals section
+    │   ├── Brand showcase
+    │   └── SEO optimized
+    │
+    ├── dien-thoai/
+    │   ├── page.tsx                 # Product listing (/dien-thoai)
+    │   │   ├── ProductFilters sidebar
+    │   │   ├── ProductSort dropdown
+    │   │   ├── Product grid (responsive)
+    │   │   ├── Pagination
+    │   │   ├── Empty state
+    │   │   ├── Loading skeleton
+    │   │   └── URL state sync
+    │   │
+    │   └── [slug]/page.tsx          # Product detail (/dien-thoai/:slug)
+    │       ├── Image gallery (main + thumbnails)
+    │       ├── Product info (name, brand, price)
+    │       ├── Discount badge
+    │       ├── Stock status indicator
+    │       ├── Add to cart button
+    │       ├── Quantity selector
+    │       ├── Technical specs table
+    │       ├── HTML description (safe)
+    │       ├── Reviews section
+    │       ├── Write review form
+    │       ├── Related products
+    │       └── generateMetadata() for SEO
+    │
+    ├── search/
+    │   └── page.tsx                 # Search results (/search?q=keyword)
+    │       ├── Search query display
+    │       ├── Results count
+    │       ├── Product grid
+    │       ├── No results message
+    │       └── Search suggestions
+    │
+    ├── cart/
+    │   └── page.tsx                 # Shopping cart (/cart)
+    │       ├── Cart items list
+    │       ├── Product thumbnail + info
+    │       ├── Quantity controls
+    │       ├── Remove item button
+    │       ├── Subtotal calculation
+    │       ├── Shipping estimate
+    │       ├── Tax calculation
+    │       ├── Total amount
+    │       ├── Promo code input
+    │       ├── Continue shopping button
+    │       ├── Proceed to checkout button
+    │       └── Empty cart state
+    │
+    ├── auth/
+    │   └── login/page.tsx           # Login page (/auth/login)
+    │       ├── Email + Password form
+    │       ├── Remember me checkbox
+    │       ├── Forgot password link
+    │       ├── Social login buttons (mock)
+    │       ├── Register link
+    │       ├── Form validation (Zod)
+    │       └── Redirect after login
+    │
+    ├── chinh-sach-bao-hanh/page.tsx # Warranty policy
+    │   ├── Policy content
+    │   ├── Terms & conditions
+    │   └── Contact info
+    │
+    ├── chinh-sach-doi-tra/page.tsx  # Return policy
+    │   ├── Return process
+    │   ├── Timeframe
+    │   └── Requirements
+    │
+    └── lien-he/page.tsx             # Contact page
+        ├── Contact form
+        ├── Store addresses
+        ├── Phone numbers
+        ├── Email addresses
+        └── Google Maps embed (optional)
 
 ### 🖼️ Public Assets
-```
-public/
-├── placeholder-phone.jpg        # Default product image
-├── images/                      # Product images (to be added)
-│   ├── iphone-15-pro-max.jpg
-│   ├── samsung-s24-ultra.jpg
-│   └── ... (30 products)
-├── icons/
-│   ├── favicon.ico
-│   ├── apple-icon.png
-│   └── android-icon.png
-└── robots.txt                   # SEO robots file
-```
+
+    public/
+    ├── placeholder-phone.jpg        # Default product image
+    ├── images/                      # Product images (to be added)
+    │   ├── iphone-15-pro-max.jpg
+    │   ├── samsung-s24-ultra.jpg
+    │   └── ... (30 products)
+    ├── icons/
+    │   ├── favicon.ico
+    │   ├── apple-icon.png
+    │   └── android-icon.png
+    └── robots.txt                   # SEO robots file
 
 ---
 
