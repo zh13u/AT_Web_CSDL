@@ -13,7 +13,7 @@
 
 ## 🚀 Quick Start Guideo diện người dùng hiện đại cho website thương mại điện---
 
-## 📖 Usage Guide bán điện thoại, được xây dựng với công nghệ tiên tiến và tối ưu#### Step 4: API Endpoints Mapping
+## 📖 Usage Guide bán điện thoại, được xây dựng với công nghệ tiên tiến và tối ưu
 
 | Frontend Route | Spring Boot Endpoint | Method | Auth |
 |----------------|---------------------|--------|------|
@@ -27,19 +27,6 @@
 | `/api/auth/me` | `/api/auth/me` | GET | Yes |
 | `/api/cart` | `/api/cart` | GET/POST/PUT/DELETE | Yes |
 | `/api/orders` | `/api/orders` | GET/POST | Yes |
-
-#### Step 5: Test Integration
-```bash
-# Start Spring Boot (port 8080)
-./mvnw spring-boot:run
-
-# Start Next.js (port 3000)
-pnpm dev
-
-# Test API call
-curl http://localhost:3000/api/products
-# Should proxy to http://localhost:8080/api/products
-```
 
 ---
 
