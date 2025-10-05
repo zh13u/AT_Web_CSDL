@@ -136,7 +136,9 @@ export default function CheckoutPage() {
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <p className="text-sm font-medium truncate">{item.name}</p>
-                                        <p className="text-xs text-muted">{item.variant}</p>
+                                        <p className="text-xs text-muted">
+                                            {item.variant.color} - {item.variant.storage}
+                                        </p>
                                         <p className="text-sm">
                                             <span className="font-semibold">{formatPrice(item.price)}</span>
                                             <span className="text-muted"> x {item.quantity}</span>
