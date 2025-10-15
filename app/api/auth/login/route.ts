@@ -9,17 +9,18 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: "Email and password required" }, { status: 400 });
     }
 
-    // Mock user
+    // Mock user with actual email from login
     const user = {
-        id: "user-123",
-        name: "Nguyễn Văn A",
-        email,
+        id: email === "admin@test.com" ? "admin-001" : "user-123",
+        name: email === "admin@test.com" ? "Admin User" : "Nguyễn Văn A",
+        email: email, // Use actual email from login
     };
 
-    // In a real app, set HttpOnly cookies here
-    // For demo, we'll set a non-HttpOnly cookie
+    // Store user data in cookie for session persistence
     const response = NextResponse.json(user);
-    response.cookies.set("session", "mock-session-token", {
+
+    // Set session cookie with user data
+    response.cookies.set("session", JSON.stringify(user), {
         httpOnly: false, // Should be true in production
         secure: false, // Should be true in production with HTTPS
         sameSite: "lax",

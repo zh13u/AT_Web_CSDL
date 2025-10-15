@@ -3,16 +3,16 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
     const session = request.cookies.get("session");
 
-    if (!session) {
+    if (!session || !session.value) {
         return NextResponse.json(null);
     }
 
-    // Mock user from session
-    const user = {
-        id: "user-123",
-        name: "Nguyễn Văn A",
-        email: "user@example.com",
-    };
-
-    return NextResponse.json(user);
+    try {
+        // Parse user data from session cookie
+        const user = JSON.parse(session.value);
+        return NextResponse.json(user);
+    } catch (error) {
+        // If parsing fails, return null (invalid session)
+        return NextResponse.json(null);
+    }
 }

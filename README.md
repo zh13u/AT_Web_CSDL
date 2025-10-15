@@ -529,10 +529,11 @@ FE/
 - ✅ **Documentation**: Comprehensive README
 - ✅ **Mock API**: Ready for backend integration
 - ✅ **Environment Variables**: .env.example template
+- ✅ **Admin Panel**: Full-featured admin dashboard
 
 ---
 
-## � Quick Start Guide
+## 🚀 Quick Start Guide
 
 ### 📋 Prerequisites
 - **Node.js**: 18.x or higher
@@ -603,7 +604,7 @@ pnpm clean            # Remove .next, node_modules, dist
 
 ---
 
-## � Usage Guide
+## 📖 Usage Guide
 
 ### 🏠 Homepage
 ```
@@ -616,6 +617,30 @@ Features:
 ```
 
 ### 📱 Product Listing
+```
+URL: http://localhost:3000/dien-thoai
+Features:
+- Filter by brand, price, RAM, storage
+- Sort by newest, popular, price, rating
+- Pagination (12 items per page)
+- Responsive grid layout
+```
+
+### 🛠️ Admin Panel
+```
+URL: http://localhost:3000/admin
+Credentials:
+- Email: admin@test.com
+- Password: 123456
+
+Features:
+- 📊 Dashboard with statistics
+- 📱 Product management (list, search, delete)
+- 📦 Order management (status updates, details)
+- 👥 User management (block/unblock)
+- ⭐ Review management (approve/reject/delete)
+
+Note: Only admin@test.com can access admin pages
 ```
 URL: http://localhost:3000/dien-thoai
 Features:

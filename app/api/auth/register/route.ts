@@ -17,8 +17,9 @@ export async function POST(request: NextRequest) {
         phone,
     };
 
+    // Store user data in cookie for session persistence
     const response = NextResponse.json(user);
-    response.cookies.set("session", "mock-session-token", {
+    response.cookies.set("session", JSON.stringify(user), {
         httpOnly: false,
         secure: false,
         sameSite: "lax",
