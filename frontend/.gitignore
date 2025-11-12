@@ -1,0 +1,10 @@
+# Dependencies (có thể cài lại bằng pnpm install)
+node_modules/
+
+# Next.js build (có thể tạo lại bằng pnpm dev/build)
+.next/
+
+# Chỉ ignore những file THỰC SỰ CẦN (tùy chọn)
+# .env.local          # Nếu có thông tin nhạy cảm
+# .DS_Store           # Mac OS file
+# Thumbs.db           # Windows file
