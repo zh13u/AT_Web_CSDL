@@ -1,0 +1,39 @@
+# ============================================
+# .GITIGNORE - Các file không commit lên Git
+# ============================================
+
+# Dependencies - Không cần commit vì có thể tải lại bằng npm install
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment variables - Chứa thông tin nhạy cảm (password, secret keys)
+.env
+.env.local
+.env.*.local
+
+# Build output - Code đã compile, không cần commit
+dist/
+build/
+*.log
+
+# IDE files - Cấu hình của editor, mỗi người khác nhau
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files - File hệ thống
+.DS_Store
+Thumbs.db
+
+# Uploads - File người dùng upload
+uploads/*
+!uploads/.gitkeep
+
+# Database files - File database local (nếu có)
+*.sqlite
+*.db
+

@@ -1,0 +1,60 @@
+{
+  "compilerOptions": {
+    // Target: Phiên bản JavaScript được tạo ra (ES2020 = JavaScript hiện đại)
+    "target": "ES2020",
+    
+    // Module: Cách import/export modules (commonjs = chuẩn Node.js)
+    "module": "commonjs",
+    
+    // Lib: Các thư viện JavaScript có sẵn
+    "lib": ["ES2020"],
+    
+    // OutDir: Thư mục chứa code đã compile (JavaScript)
+    "outDir": "./dist",
+    
+    // RootDir: Thư mục chứa code nguồn (TypeScript)
+    "rootDir": "./src",
+    
+    // Strict: Bật chế độ strict để TypeScript kiểm tra lỗi chặt chẽ hơn
+    "strict": true,
+    
+    // EsModuleInterop: Cho phép import module theo cách mới
+    "esModuleInterop": true,
+    
+    // SkipLibCheck: Bỏ qua kiểm tra type trong thư viện node_modules (nhanh hơn)
+    "skipLibCheck": true,
+    
+    // ForceConsistentCasingInFileNames: Bắt buộc tên file đúng case (tránh lỗi trên Linux/Mac)
+    "forceConsistentCasingInFileNames": true,
+    
+    // ResolveJsonModule: Cho phép import file JSON
+    "resolveJsonModule": true,
+    
+    // ModuleResolution: Cách tìm và resolve modules
+    "moduleResolution": "node",
+    
+    // ExperimentalDecorators: Bật decorators (@Entity, @Column...) cho TypeORM
+    "experimentalDecorators": true,
+    
+    // EmitDecoratorMetadata: Cần cho TypeORM decorators
+    "emitDecoratorMetadata": true,
+    
+    // StrictPropertyInitialization: Tắt để không bắt buộc khởi tạo property ngay
+    "strictPropertyInitialization": false,
+    
+    // BaseUrl: Base path cho import
+    "baseUrl": "./src",
+    
+    // Paths: Alias cho import (có thể dùng @/ thay vì ../../)
+    "paths": {
+      "@/*": ["*"]
+    }
+  },
+  
+  // Include: Các file TypeScript cần compile
+  "include": ["src/**/*"],
+  
+  // Exclude: Các file/thư mục không cần compile
+  "exclude": ["node_modules", "dist"]
+}
+

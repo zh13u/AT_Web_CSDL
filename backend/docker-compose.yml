@@ -1,0 +1,61 @@
+# ============================================
+# DOCKER COMPOSE - Cấu hình Database MySQL
+# ============================================
+# File này định nghĩa cách chạy MySQL database trong Docker container
+# Khi chạy lệnh "docker-compose up", nó sẽ đọc file này và tạo container
+
+services:
+  # ========== SERVICE: MySQL Database ==========
+  mysql:
+    # Sử dụng image MySQL phiên bản 8.0 (official từ Docker Hub)
+    image: mysql:8.0
+    
+    # Tên container (để dễ nhận biết khi xem danh sách containers)
+    container_name: phone_shop_mysql
+    
+    # Tự động khởi động lại container nếu bị dừng (trừ khi dừng thủ công)
+    restart: unless-stopped
+    
+    # ========== ENVIRONMENT VARIABLES ==========
+    # Các biến môi trường để cấu hình MySQL
+    environment:
+      # Mật khẩu cho user root (admin của MySQL)
+      MYSQL_ROOT_PASSWORD: rootpassword
+      
+      # Tên database sẽ được tạo TỰ ĐỘNG khi container khởi động
+      MYSQL_DATABASE: phone_shop_db
+      
+      # Tạo user mới để ứng dụng kết nối (không dùng root vì bảo mật)
+      MYSQL_USER: phone_shop_user
+      MYSQL_PASSWORD: phone_shop_password
+    
+    # ========== PORTS ==========
+    # Map port: port_máy_tính:port_container
+    # Port 3306 là port mặc định của MySQL
+    # Sau khi map, bạn có thể kết nối từ máy tính vào MySQL qua localhost:3306
+    ports:
+      - "3306:3306"
+    
+    # ========== VOLUMES ==========
+    # Lưu dữ liệu database vào volume để không mất khi restart container
+    volumes:
+      # mysql_data là tên volume (sẽ được tạo tự động)
+      # /var/lib/mysql là nơi MySQL lưu dữ liệu trong container
+      - mysql_data:/var/lib/mysql
+    
+    # ========== HEALTHCHECK ==========
+    # Kiểm tra MySQL đã sẵn sàng chưa (để biết khi nào có thể kết nối)
+    healthcheck:
+      # Lệnh kiểm tra: ping MySQL server
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s    # Kiểm tra mỗi 10 giây
+      timeout: 5s      # Timeout sau 5 giây
+      retries: 5       # Thử lại 5 lần nếu fail
+
+
+# ========== VOLUMES ==========
+# Định nghĩa volumes để lưu dữ liệu
+volumes:
+  mysql_data:
+    driver: local  # Lưu trên máy local
+

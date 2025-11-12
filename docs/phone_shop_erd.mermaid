@@ -1,0 +1,188 @@
+erDiagram
+    %% ================= CORE ENTITIES =================
+    USER ||--o{ ORDER : places
+    USER ||--o{ CART : has
+    USER ||--o{ REVIEW : writes
+    USER ||--o{ COMPLAINT : submits
+    USER ||--o{ NOTIFICATION : receives
+
+    USER {
+        int userId PK
+        string name
+        string email UK
+        string password
+        string phone
+        string address
+        string role "customer|admin"
+        date dateRegistered
+        date lastLogin
+    }
+
+    %% ADMIN inherits USER (1-1). Admin records who manages/handles/creates.
+    USER ||--|| ADMIN : "is"
+    ADMIN ||--o{ PRODUCT : manages
+    ADMIN ||--o{ ORDER : processes
+    ADMIN ||--o{ USER : manages
+    ADMIN ||--o{ COMPLAINT : handles
+    ADMIN ||--o{ REPORT : generates
+    ADMIN ||--o{ SYSTEM_CONFIG : manages
+    ADMIN {
+        int adminId PK,FK "references USER.userId"
+        date dateCreated
+    }
+
+    %% ================= CATALOG =================
+    PRODUCT }o--|| CATEGORY : "belongs to"
+    PRODUCT ||--o{ CART_ITEM : "in carts"
+    PRODUCT ||--o{ ORDER_ITEM : "in orders"
+    PRODUCT ||--o{ REVIEW : "reviewed in"
+    PRODUCT {
+        int productId PK
+        string name
+        string description
+        float price
+        int stock
+        int categoryId FK
+        string brand
+        string imageUrl
+        float rating
+        date dateAdded
+        boolean isActive
+    }
+
+    CATEGORY {
+        int categoryId PK
+        string categoryName UK
+        string description
+    }
+
+    %% ================= CART & ORDER =================
+    CART ||--|{ CART_ITEM : contains
+    CART {
+        int cartId PK
+        int userId FK
+        float totalPrice
+        date lastUpdated
+    }
+
+    CART_ITEM {
+        int cartItemId PK
+        int cartId FK
+        int productId FK
+        int quantity
+        float subtotal
+    }
+
+    ORDER ||--|{ ORDER_ITEM : contains
+    ORDER ||--|| PAYMENT : "paid by"
+    ORDER ||--o| VOUCHER : "applies"
+    ORDER ||--o| SHIPPING : "shipped via"
+    ORDER {
+        int orderId PK
+        int userId FK
+        date orderDate
+        string status
+        float totalAmount
+        string paymentMethod
+        string shippingAddress
+        float discountAmount
+        date deliveryDate
+        int voucherId FK "nullable"
+        int processedByAdminId FK "nullable → ADMIN.adminId"
+    }
+
+    ORDER_ITEM {
+        int orderItemId PK
+        int orderId FK
+        int productId FK
+        int quantity
+        float price
+        float subtotal
+    }
+
+    PAYMENT {
+        int paymentId PK
+        int orderId FK
+        float amount
+        string method
+        string status
+        date paymentDate
+        string transactionId
+    }
+
+    SHIPPING {
+        int shippingId PK
+        int orderId FK
+        string carrier
+        string trackingNumber
+        string status
+        date shippedDate
+        date estimatedDelivery
+        date actualDelivery
+    }
+
+    %% ================= PROMOTION =================
+    VOUCHER ||--o{ ORDER : "used in"
+    VOUCHER {
+        int voucherId PK
+        string code UK
+        float discountAmount
+        float discountPercent
+        date expiryDate
+        float minOrderAmount
+        boolean isActive
+        int usageLimit
+        int usedCount
+    }
+
+    %% ================= UGC & SUPPORT =================
+    REVIEW {
+        int reviewId PK
+        int productId FK
+        int userId FK
+        int rating
+        string comment
+        date reviewDate
+        boolean isVerified
+    }
+
+    COMPLAINT {
+        int complaintId PK
+        int userId FK
+        int orderId FK
+        string content
+        string status
+        date createdAt
+        date resolvedAt
+        string resolution
+        int handledByAdminId FK "nullable → ADMIN.adminId"
+    }
+
+    %% ================= OPS =================
+    REPORT {
+        int reportId PK
+        int adminId FK "→ ADMIN.adminId"
+        string reportType
+        date generatedDate
+        string content
+        string period
+    }
+
+    SYSTEM_CONFIG {
+        int configId PK
+        string configKey UK
+        string configValue
+        string description
+        date lastUpdated
+        int updatedByAdminId FK "→ ADMIN.adminId"
+    }
+
+    NOTIFICATION {
+        int notificationId PK
+        int userId FK
+        string title
+        string message
+        string type
+        boolean isRead
+        date createdAt
+    }
